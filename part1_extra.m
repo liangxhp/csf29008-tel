@@ -44,3 +44,5 @@ for u = 1:length(municipios)
     end
     SIR(u) = part1_ex(Area_cidade,Rc,n)
 end
+
+
