@@ -6,7 +6,7 @@ b = xlsread('ErlangCTable.xls');
 linha = [];
 coluna = [];
 [l,c] = size(b);
-n = [];
+n = 0;
 aux = [];
 aux2 = 1;
 for i = 1:c
@@ -17,14 +17,17 @@ for i = 1:c
                 break;
             else
                 aux(aux2) = A - b(j,i);
-                if(abs(aux(aux2)) < 0.5)
-                    n = j-1;
-                    break;
-                end
+                tst(j) = min(abs(aux));
                 aux2 = aux2 + 1;
             end
         end
     end
+end
+
+if n == 0
+    tst(~tst) = nan;
+    [u,v] = min(tst);
+    n = v-1;
 end
 
 end

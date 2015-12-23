@@ -1,13 +1,12 @@
-clc;clear all;close all;
-
+function [ n ] = erlangcinv( A,delay )
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
 b = xlsread('ErlangCTable.xls');
-delay = 0.4;
-A = 2.5981;
 
 linha = [];
 coluna = [];
 [l,c] = size(b);
-n = 0;
+n = [];
 aux = [];
 aux2 = 1;
 for i = 1:c
@@ -18,17 +17,14 @@ for i = 1:c
                 break;
             else
                 aux(aux2) = A - b(j,i);
-                tst(j) = min(abs(aux));
                 aux2 = aux2 + 1;
             end
         end
+
     end
 end
 
-if n == 0
-    tst(~tst) = nan;
-    [u,v] = min(tst);
-    n = v-1;
+
+
 end
 
-display(n);
