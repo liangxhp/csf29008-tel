@@ -54,13 +54,12 @@ if(floor(N) ~= ntable(aux))
     for i = 1:length(aux2)
         tst = min(abs(aux2));
         for m = 1:length(aux2)
-            if abs(aux2(m)) == tst
-                N = ntable(m);
+            if abs(aux(m)) == tst
+                N = ntable(i);
                 break;
             end
         end
     end
-end
     %% N�mero de clusters
     N_cluster = Area_cidade/(N*Area_celula);
     %% Raz�o de reuso
@@ -83,7 +82,7 @@ end
     %% Porcentagem da população atendida
     pop = A_sistema/Habitantes;
     %% Resultado População
-    sprintf('Resultado da população atendida: %d',pop*100)
+    sprintf('Resultado da população atendida: %d',pop)
     if(pop >= Habitantes)
         sprintf('Resultado OK!')
     else
