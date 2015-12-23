@@ -36,7 +36,7 @@ A_usuario = (lambda/3600)*H*F;
 %% Tr�fego por celula
 A_celula = A_usuario*U_celula;
 %% Capacidade de canal por c�lula
-k = erlangcinv(Pr_delay,A_celula);
+k = erlangcinv(A_celula,Pr_delay);
 %% Fator de reuso
 N = S/k;
 aux = 1;

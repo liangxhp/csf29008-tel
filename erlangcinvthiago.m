@@ -1,7 +1,8 @@
-function [ n ] = erlangcinv( A,delay )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+clc;clear all;close all;
+
 b = xlsread('ErlangCTable.xls');
+delay = 0.4;
+A = 7.9590;
 
 linha = [];
 coluna = [];
@@ -18,5 +19,4 @@ for i = 1:c
     end
 end
 
-end
-
+display(n);

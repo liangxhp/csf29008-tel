@@ -2,7 +2,7 @@ clc;clear all;close all;
 
 b = xlsread('ErlangCTable.xls');
 delay = 0.4;
-n = 1;
+n = 9;
 
 linha = [];
 coluna = [];
@@ -11,7 +11,7 @@ coluna = [];
 for i = 1:c
    if b(1,i) == delay
        coluna = i;
-      for j = 1:l
+      for j = 2:l
          if b(j,1) == n
              linha = j;
             break; 
@@ -20,5 +20,4 @@ for i = 1:c
    end
 end
 
-B = b(linha,coluna);
-display(B);
+display(b(linha,coluna));
