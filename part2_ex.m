@@ -1,42 +1,33 @@
-clc;clear all;close all;
+function [ pop ] = part2_ex( Area_cidade,Densidade,Rc,n )
+%part2_ex Summary of this function goes here
+%   Detailed explanation goes here
 ntable = [1 3 7 13 21 4 12 19 9 16];
 ntable = sort(ntable);
 %% Dados iniciais
-Densidade = 57.62;
-Area_cidade = 344.05;
-Habitantes = Densidade*Area_cidade;
-if(Habitantes > 100e3)
-    Rc = 600/1000; %quilometros
-    n = 5; %fator ambiente
-else
-    Rc = 1000/1000; %quilometros
-    n = 3; %fator ambiente
-end
-SIR_lim = 13; %dB
+Habitantes = Area_cidade*Densidade;
 i0 = 2;
 Bw_full = 0.2e6;
 Bw_voz = 25e6;
-setor = 3;
 Pr_delay = 0.4;
 lambda = 3;
 H = 120;
 F = 0.5;
 %% Usuarios do sistema
 U_sistema = 0.75*Habitantes;
-%% ï¿½rea da cï¿½lula
+%% Área da cï¿½lula
 Area_celula = ((3*sqrt(3))/2)*Rc^2;
-%% Nï¿½mero total de cï¿½lulas
+%% Número total de cï¿½lulas
 Total_celula = Area_cidade/Area_celula;
 %% Quantidade de canal por cluster
 S = Bw_voz/Bw_full;
-%% Usuï¿½rios por celula
+%% Usuários por celula
 U_celula = U_sistema/Total_celula;
-%% Trï¿½fego de usuï¿½rios
+%% Tráfego de usuï¿½rios
 A_usuario = (lambda/3600)*H*F;
-%% Trï¿½fego por celula
+%% Tráfego por celula
 A_celula = A_usuario*U_celula;
-%% Capacidade de canal por cï¿½lula
-k = erlangcinv(A_celula,Pr_delay)
+%% Capacidade de canal por célula
+k = erlangcinv(A_celula,Pr_delay);
 %% Fator de reuso
 N = S/k;
 aux = 1;
@@ -61,11 +52,11 @@ if(floor(N) ~= ntable(aux))
         end
     end
 end
-    %% Nï¿½mero de clusters
+    %% Número de clusters
     N_cluster = Area_cidade/(N*Area_celula);
-    %% Razï¿½o de reuso
+    %% Razão de reuso
     q = sqrt(3*N);
-    %% Razï¿½o Sinal-Interferï¿½ncia
+    %% Razão Sinal-Interferência
     SIR = 10*log10((q^n)/i0);
     %% Calculo do numero de canais por celula
     if((k - ceil(k)) ~= 0)
@@ -81,11 +72,14 @@ end
     %% TrÃ¡fego do sistema
     A_sistema = A_usuario*U_sistema;
     %% Porcentagem da populaÃ§Ã£o atendida
-    pop = U_sistema/Habitantes;
+    pop = 100*U_sistema/Habitantes
     %% Resultado PopulaÃ§Ã£o
-    sprintf('Resultado da populaÃ§Ã£o atendida: %d',pop*100)
-    if(pop*100 >= 75)
+    sprintf('Resultado da população atendida: %d',pop)
+    if(pop >= 75)
         sprintf('Resultado OK!')
     else
         sprintf('Resultado NOK!')
     end
+
+end
+

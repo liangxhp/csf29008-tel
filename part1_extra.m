@@ -42,7 +42,8 @@ for u = 1:length(municipios)
         Rc = 1000/1000; %quilometros
         n = 3; %fator ambiente
     end
-    SIR(u) = part1_ex(Area_cidade,Rc,n)
+    SIR(u) = part1_ex(Area_cidade,Rc,n);            %Garantindo SIR
+    pop(u) = part2_ex(Area_cidade,Densidade,Rc,n);  %Garantindo Tráfego
 end
 
 

@@ -31,9 +31,9 @@ municipios = [  1 303.30 202.14;
     29 377.76 116.81];
 %% Dados Iniciais
 for u = 1:length(municipios)
-    Municipio = municipios();
-    Densidade = 57.62;
-    Area_cidade = 344.05;
+    Municipio = municipios(u,:);
+    Densidade = Municipio(3);
+    Area_cidade = Municipio(2);
     Habitantes = Densidade*Area_cidade;
     if(Habitantes > 100e3)
         Rc = 600/1000; %quilometros
@@ -43,4 +43,7 @@ for u = 1:length(municipios)
         n = 3; %fator ambiente
     end
     SIR(u) = part1_ex(Area_cidade,Rc,n)
+    pop(u) = part2_ex()
 end
+
+
